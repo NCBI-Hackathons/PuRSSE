@@ -11,3 +11,46 @@ Known PMIDs (paste into interface) --> retrieve metadata --> LDA --> MAGIC --> S
 
 We will also be creating a simple interface for testing the precision and recall of a search (PMIDs) against a known set of items (PMIDs). 
 
+
+## Process
+
+Get Pubmed Data
+- Download XML from NLM FTP. Approx 200GB. Benefits: all the data all the time. Negitives: out of date fast, requires a lot of space
+- API. Slow. Doesn't require server space. Can't get everything. 
+- Pubrunner
+- EDirect Local Data Cache
+
+Extract useful metadata from XML
+- Abstract Text
+- Title
+- MeSH Major Headings
+- MeSH Subheadings (?)
+- Keywords
+- PMIDs
+
+Topic Modelling
+- Magic step 1
+- Magic step 2
+- Magic step 3
+- Magic step 4
+
+Find MeSH & Keyword Strings associated with Topics
+- Magic step 1
+- Magic step 2
+- Magic step 3
+- Magic step 4
+
+Create Shortest Precise Search String 
+- Magic step 1
+- Magic step 2
+- Magic step 3
+- Magic step 4
+
+Test against known PMIDs
+- Magic step 1
+- Magic step 2
+- Magic step 3
+- Magic step 4
+
+
+
