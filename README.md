@@ -1,9 +1,17 @@
-# SystematicReviews
-##Automated Systematic Reviews
-###NCBI March 2018
+# PuRSSE for Systematic Reviews
+# Public Research Search String Extraction
+<img src="https://raw.githubusercontent.com/NCBI-Hackathons/SystematicReviews/master/PuRSSE.png" />
+
 
 
 ## Discovering The Smallest Precise Search Strategy for Pubmed from a set of Known PMIDs using Topic Modeling and Article Metadata
+###NIH/NLM/NCBI March 2018
+
+## Why for systematic reviews?
+
+Lorem ipsum dolor sit amet....
+
+## What we will do/What we did
 
 This project aims to create a pipeline for taking a set of known PMIDs and discovering the Shortest Precise Search Strategy (SPSS) for from Pubmed that (a) retrieves all the original PMIDs, and (b) retrieves other articles related to the original topic of the known PMIDs. This will use the article-level metadata provided by NLM and topic modeling, specifically  latent Dirichlet allocation (LDA), which will then be used to create searches made up of MeSH headings and keywords. 
 
