@@ -5,7 +5,7 @@
 
 
 ## Discovering The Smallest Precise Search Strategy for Pubmed from a set of Known PMIDs using Topic Modeling and Article Metadata
-###NIH/NLM/NCBI March 2018
+### NIH/NLM/NCBI March 2018
 
 ## Why for systematic reviews?
 
