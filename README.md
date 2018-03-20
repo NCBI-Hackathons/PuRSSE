@@ -52,29 +52,27 @@ Extract useful metadata from XML
 - The title and abstract are concatanted together, this is for older PubMed records with no abstract, and then are cleaned for   processing. The cleaning process includes tokenizing, lowercasing, stemming and the removal of stop words. 
 ** Note: full text was not included in this extraction. **
 
-#NLP Modeling on Title and Abstract
+# NLP Modeling on Title and Abstract
 - TF-IDF is run on both Abstract+Title
 - Document embeddings (Doc2Vec) are run on documents for features to measure similarity across documents. 
 - Word embeddings (Word2vec) are run across the entire corpus to measure similarity and capture context across words. 
 - Latent Dirichlet Allocation (LDA) is run for Topic Modeling purposes on Title and Abstract
 
-#NLP Modeling on MeSH terms
+# NLP Modeling on MeSH terms
 - TF-IDF across MeSH terms to find co-occurence  
 - Word embeddings (Word2vec) are run across the entire corpus of words
 
-#Retrieve most similar documents to initial ones provided
+# Retrieve most similar documents to initial ones provided
 - Determining document similarity through NLP feature vectors
 - apply a nearest-neighbors approach (K-D Tree or K-D Ball) to retrieve the most similar documents to initial list of PMIDs
 - Retrieve documents using pre-determined number PMIDs (e.g. n=2000) using a metric (e.g. cosine similarity)
 
-#Map MeSH & Keyword Strings associated with newest retrieved documents
+# Map MeSH & Keyword Strings associated with newest retrieved documents
 - Run hierarchical (agglomerative) clustering to find the different groupings of MeSH terms
 
 
-
-
 Create Shortest Precise Search String 
-- Penalize longer search strings - apply higher weight to 
+- Penalize longer search strings - apply higher weight to MeSH terms deeper in MeSH tree
 - Magic step 2
 - Magic step 3
 - Magic step 4
