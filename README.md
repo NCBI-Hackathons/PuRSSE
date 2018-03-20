@@ -36,18 +36,21 @@ This could be used to help with topic modeling PubMed literature by providing a 
 # Process
 
 Get PubMed Data
-- Download XML from NLM FTP. Approx 200GB. Benefits: all the data all the time. Negitives: out of date fast, requires a lot of space
+- Download XML from NLM FTP. Approx 200GB. Benefits: all the data all the time. Negitives: with addition of new publications the list becomes out of date quickly, requires a lot of memory
 - API. Slow. Doesn't require server space. Can't get everything. 
 - Pubrunner
 - EDirect Local Data Cache
 
 Extract useful metadata from XML
-- Abstract Text
-- Title
-- MeSH Major Headings
-- MeSH Subheadings
-- Keywords
-- PMIDs
+- Metadata was extracted from PubMed XML files using python's lmxl model. The following features were extracted:
+  - PMIDs
+  - Title
+  - Abstract Text
+  - MeSH Major Headings
+  - MeSH Subheadings
+  - Keywords
+- The title and abstract are concatanted together, this is for older PubMed records with no abstract, and then are cleaned for   processing. The cleaning process includes tokenizing, lowercasing, stemming and the removal of stop words. 
+** Note: full text was not included in this extraction. **
 
 Topic Modeling on Title and Abstract
 - TF-IDF
