@@ -1,37 +1,41 @@
-# PuRSSE
-# Pubmed Research Search String Extraction
+# PuRSSE (Pubmed Research Search String Extraction)
 
-<img src="https://raw.githubusercontent.com/NCBI-Hackathons/SystematicReviews/master/PuRSSE.png" />
+<img src="https://raw.githubusercontent.com/NCBI-Hackathons/SystematicReviews/master/PuRSSE.png" height=30 /> This project aims to create a pipeline for taking a set of known PMIDs and discovering the Shortest Precise Search Strategy (SPSS) for Pubmed that (a) retrieves all the original PMIDs, and (b) retrieves other articles related to the original topic(s) extracted from the known PMIDs. This process uses the article-level metadata provided by NLM (title and abstract plus MeSH terms and keywords). Topic modeling, specifically TF-IDF, word embedding and latent Dirichlet allocation (LDA), are used on the title and abstract. TF-IDF and word embedding are used on the MeSH terms. The topics generated will be used to create search strings constructed from the corresponding MeSH headings and keywords. 
 
-This project aims to create a pipeline for taking a set of known PMIDs and discovering the Shortest Precise Search Strategy (SPSS) for from Pubmed that (a) retrieves all the original PMIDs, and (b) retrieves other articles related to the original topic of the known PMIDs. This will use the article-level metadata provided by NLM and topic modeling, specifically  latent Dirichlet allocation (LDA), which will then be used to create searches made up of MeSH headings and keywords. 
+# Team Members
 
-Known PMIDs (paste into interface) --> retrieve metadata --> LDA --> MAGIC --> Search Strategy (cut & paste into pubmed.gov)
+Melanie Huston, James Lavinder, Richard Lusk, Franklin Sayre
+
+A prototype of the projected process is at [location]:<br>
+Known PMIDs (paste list or search into interface) --> retrieve articles' metadata --> topic modeling and clustering --> search string construction using MeSH --> New Search Strategy (cut & paste search into PubMed.gov)
 
 # Three Goals/Projects
-1. Create clusters of articles based on topic modeling (LDA, Word Embedding) from any Pubmed-compliant XML file
+1. Create clusters of articles based on topic modeling (TF-IDF, LDA, Word Embedding) from any PubMed-compliant XML file
 2. Based on a set of known articles, find other articles that are similar using topic modeling (via either direct similarity comparison OR by building a new search string from metadata associated with topic clusters)
-3. Compare known set of PMIDs with larger set of PMIDs and find precision and recall
+3. Compare known set of PMIDs with larger set of PMIDs to verify 100% recall of known set and ideal larger set size for optimal precision
 
 # Why is this useful?
 1. It's cool!
-2. Researchers need ways of doing topic modeling on pubmed literature easily 
+2. Researchers need ways of doing topic modeling on PubMed literature easily 
 3. Creating a "shortest precise search strategy" based on a set of known PMIDs that retrieves those PMIDs and others like them could be useful for systematic reviews and other information retrieval tasks
 4. Researchers/instructors need ways of quickly getting precision and recall scores for a set of PMIDs within another set of PMIDs
 
 # How could this be used for systematic reviews
-The first stage of creating a systematic review often involves taking a known set of articles (mostly available in Pubmed and with PMIDs) and then iteratively looking through metadata and keywords to create an extensive search string that can find both those target articles and other similar articles, without retrieving too much. This could potentially be used to help with that process by recommending a search string. 
+The first stage of creating a systematic review often involves taking a known set of articles (mostly available in PubMed and with PMIDs) and then iteratively looking through metadata and keywords to create an extensive search string that can find both those target articles and other similar articles, without retrieving too much. This could potentially be used to help with that process by recommending a search string. 
 
-# How could this be used for topic modelling pubmed literature
-This could be used to help with topic modeling pubmed literature by providing a pipeline that takes a pubmed compliant XML file (generated from pubmed.gov, or downloaded from pubmed FTP servers, or retrieved through EDirect) and outputing a set of topic models. This could be attached to other projects. 
+# How could this be used for topic modelling PubMed literature
+This could be used to help with topic modeling PubMed literature by providing a pipeline that takes a PubMed compliant XML file (generated from PubMed.gov, or downloaded from PubMed FTP servers, or retrieved through EDirect) and outputing a set of topic models. This could be attached to other projects. 
 
-# To do
-- Document ways of getting pubmed compliant XML files (ftp, pubmed.gov)
+# To do/Issues
+- document ways of getting PubMed compliant XML files (ftp, PubMed.gov)
 - see if EDirect gives compliant XML
-- 
+- determine optimum way(s) to model topics (metadata and methods)
+- create front end interface for end users
+- optimum method for stemming medical terms
 
 # Process
 
-Get Pubmed Data
+Get PubMed Data
 - Download XML from NLM FTP. Approx 200GB. Benefits: all the data all the time. Negitives: out of date fast, requires a lot of space
 - API. Slow. Doesn't require server space. Can't get everything. 
 - Pubrunner
@@ -41,14 +45,20 @@ Extract useful metadata from XML
 - Abstract Text
 - Title
 - MeSH Major Headings
-- MeSH Subheadings (?)
+- MeSH Subheadings
 - Keywords
 - PMIDs
 
-Topic Modelling
-- Magic step 1
-- Magic step 2
+Topic Modeling on Title and Abstract
+- TF-IDF
+- Word embedding
 - Magic step 3
+- Magic step 4
+
+Topic Modeling on MeSH terms
+- TF-IDF
+- Word embedding
+- Latent Dirichlet Allocation (LDA)
 - Magic step 4
 
 Find MeSH & Keyword Strings associated with Topics
