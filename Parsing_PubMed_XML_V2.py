@@ -31,25 +31,41 @@ def first(parent, expr):
     children = parent.xpath(expr)
     return children[0].text if len(children) > 0 else ''
 
+
+
 def process_xml(file):
-    
-    root = etree.parse(file).getroot()
-    global raw_docs
-    raw_docs = pd.DataFrame([['']*3]*len(root.getchildren()), columns = ['PMID','Title','Abstract'])
+    root = etree.parse('test_medium_data.xml').getroot()
+    global raw_docs, iteration,mesh_d_text,mesh_q_text
     iteration = 0
+    mesh_d_text,mesh_q_text = '',''
+    raw_docs = pd.DataFrame([['']*5]*len(root.getchildren()), columns = ['PMID','Title','Abstract','MeSH_Descriptor','MeSH_Qualifier'])
+    
     for pmarticle in root.getchildren():
         
         pmid = first(pmarticle,'MedlineCitation/PMID')
         title = first(pmarticle, 'MedlineCitation/Article/ArticleTitle')
-        article = first(pmarticle,'MedlineCitation/Article/Abstract/AbstractText')
-#        'MedlineCitation/MeshHeadingList/MeshHeading/DescriptorName'
-#        'MedlineCitation/MeshHeadingList/MeshHeading/QualifierName'
-
+        asbtract = first(pmarticle,'MedlineCitation/Article/Abstract/AbstractText')
+        
+        mesh_d_text,mesh_q_text = '',''
+    
+        for heading in pmarticle.xpath('MedlineCitation/MeshHeadingList/MeshHeading'):
+            MeSH_D = first(heading,'DescriptorName')
+            mesh_d_text = mesh_d_text + "$" + MeSH_D
+            
+            MeSH_Q = first(heading,'QualifierName')
+            mesh_q_text = mesh_q_text + "$" + MeSH_Q
+        
+        MeSH_D = mesh_d_text.split("$")
+        MeSH_Q = mesh_q_text.split("$")
+        
         raw_docs['PMID'][iteration] = pmid
         raw_docs['Title'][iteration] = title
-        raw_docs['Abstract'][iteration] = article
-       
+        raw_docs['Abstract'][iteration] = asbtract
+        raw_docs['MeSH_Descriptor'][iteration] = MeSH_D
+        raw_docs['MeSH_Qualifier'][iteration] = MeSH_Q
+        
         iteration += 1
+    
     return(raw_docs)
     
 # =============================================================================
