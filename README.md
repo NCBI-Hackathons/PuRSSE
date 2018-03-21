@@ -54,8 +54,7 @@ Extract useful metadata from XML
 
 # NLP Modeling on Title and Abstract
 - TF-IDF is run on both Abstract+Title
-- Document embeddings (Doc2Vec) are run on documents for features to measure similarity across documents. 
-- Word embeddings (Word2vec) are run across the entire corpus to measure similarity and capture context across words. 
+- Document embeddings (Doc2Vec) are run on documents for features to measure similarity across documents
 - Latent Dirichlet Allocation (LDA) is run for Topic Modeling purposes on Title and Abstract
 
 # NLP Modeling on MeSH terms
@@ -63,25 +62,27 @@ Extract useful metadata from XML
 - Word embeddings (Word2vec) are run across the entire corpus of words
 
 # Retrieve most similar documents to initial ones provided
-- Determining document similarity through NLP feature vectors
-- apply a nearest-neighbors approach (K-D Tree or K-D Ball) to retrieve the most similar documents to initial list of PMIDs
-- Retrieve documents using pre-determined number PMIDs (e.g. n=2000) using a metric (e.g. cosine similarity)
+- Determining document similarity through NLP feature vectors and similarity metric (e.g. cosine similarity)
+- apply a nearest-neighbors approach (K-D Tree) to retrieve the most similar documents to initial list of PMIDs
+- Retrieve documents using pre-set number PMIDs (e.g. n=200)
+
+# Test against known PMIDs
+- Use a corpus of a previously performed systematic review to validate results (Gout)
+- Embed relevant articles (~300) among a larger semi-random corpus of ~10,000 other PubMed abstracts
+- Measure performance through standard measures of precision and recall
 
 # Map MeSH & Keyword Strings associated with newest retrieved documents
-- Run hierarchical (agglomerative) clustering to find the different groupings of MeSH terms
+- Using the newly retrieve PMIDs, map to the associated MeSH terms and identify terms most relevant to the original search documents
+- Apply a similar nearest-neighbor approach as done with PMIDs abstracts, but now retrieving new MeSH terms
+- Traverse the hierarchical structure of MeSH ID strings and subset terms based on their similarity (i.e. Levenshtein Distance)
+- Combine the results of both approaches (nearest neighbor search, MeSH string matching) to form a final subset list of MeSH terms
 
-
-Create Shortest Precise Search String 
+# Create Shortest Precise Search String 
 - Penalize longer search strings - apply higher weight to MeSH terms deeper in MeSH tree
-- Magic step 2
-- Magic step 3
-- Magic step 4
+- Sort and prioritize final MeSH terms based on frequency found within retrieved PubMed articles
 
-Test against known PMIDs
-- Magic step 1
-- Magic step 2
-- Magic step 3
-- Magic step 4
+# Miscellaneous excercises
+- Perform hierarchical clustering on new MeSH terms in order to facilitate topic discovery and as an additional validation procedure to our approach
 
 
 
