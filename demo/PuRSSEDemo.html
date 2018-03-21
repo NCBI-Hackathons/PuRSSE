@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>&#128092; PuRSSE Demo</title>
+<link type="text/css" rel="stylesheet" href="pursse.css" />
+<script>
+function openFunction() {
+	document.getElementById('area1').value="";
+	document.getElementById('area2').value="";
+	
+}
+function step1button() {
+	var entry = document.getElementById('area1').value;
+	
+	if (!entry.includes("[")) {
+    	document.getElementById("output1a").style.display = "block";
+		document.getElementById("output1b").style.display = "none";
+	}
+	else {
+		document.getElementById("output1b").style.display = "block";
+		document.getElementById("output1a").style.display = "none";
+	}
+}
+function step2button() {
+    document.getElementById("output2a").style.display = "block";
+	document.getElementById("results").style.display = "block";
+}
+function generatec() {
+	document.getElementById("searchstring").style.display = "block";
+	document.getElementById("output2b").style.display = "block";
+	document.getElementById("results").style.display = "block";
+	document.getElementById("optimize").style.display = "block";
+	document.getElementById("output2a").style.display = "none";
+}
+function showoptimal() {
+	document.getElementById("searchstring").style.display = "none";
+	document.getElementById("results").style.display = "none";
+	document.getElementById("optimizebutton").style.display = "none";
+	document.getElementById("output3").style.display = "block";
+	document.getElementById("optimize").style.width = "80%";
+}
+</script>
+</head>
+
+<body  onload="openFunction()">
+<h1>PuRSSE <img src="https://raw.githubusercontent.com/NCBI-Hackathons/SystematicReviews/master/PuRSSE.png" alt="" height="30" /> (PubMed Research Search String Extraction) Demo</h1>
+<div class="step">
+  <div class="heading">Step 1</div>
+  <div class="instructions">Enter a list of known PMIDs<br>
+    or a <a href="https://www.ncbi.nlm.nih.gov/pubmed/">PubMed</a> search query string:</div>
+  <div class="input">
+    <textarea rows="10" cols="50" id="area1"></textarea>
+    <br>
+    <button id="step1button" onclick="step1button()">Submit</button>
+  </div>
+  <div class="output"><span class="output1" id="output1a">Thanks!<br>
+    You entered<br>
+    36 known PMIDs</span> <span class="output1" id="output1b">Thanks!<br>
+    This search generated<br>
+    36 known PMIDs<br>
+    <a href="#">Export list</a></span></div>
+  <br class="clear" />
+</div>
+<div class="step">
+  <div class="heading">Step 2</div>
+  <div class="instructions">Enter all PMIDs from your corpus:<br>
+    <br>
+    OR
+    <button id="generatec"  onclick="generatec()">Generate a corpus from my known PMIDs</button>
+  </div>
+  <div class="input">
+    <textarea rows="10" cols="50" id="area2"></textarea>
+    <br>
+    <button  onclick="step2button()">Submit</button>
+  </div>
+  <div class="output"><span class="output2" id="output2a">Thanks!<br>
+    You entered<br>
+    649 PMIDs</span></div>
+  <br class="clear" />
+  <div id="searchstring"><span class="resultheading">Search string generated from your PMIDs:</span><br>
+    gout[mh]+OR+(chondrocalcinosis[majr]+AND+diagnosis,+differential[mh]))+AND+english[la]+AND+humans[mh]+AND+(jsubsetk[text]+OR+review[pt]+OR+guideline[pt]+OR+clinical+trial[pt]+OR+patient+education+handout[pt]+OR+jsubsetn[text]+OR+jsubsetaim[text]+OR+systematic[sb])+NOT+(letter[pt]+OR+editorial[pt])+AND+%22last+1+Year%22[edat] <a href="#">Copy</a><br>
+    <br>
+    <span class="output2" id="output2b"><span class="resultheading">This search generated</span> 649 PMIDs <a href="#">Export list</a></span></div>
+</div>
+<div class="step">
+  <div class="heading">Results</div>
+  <div id="results"> <span class="resultheading">Recall for your known PMIDs<br>
+    in this corpus:</span> 52.78% <br>
+    <img class="venn" src="venn.png" alt="" /></div>
+  <div id="optimize">
+    <button onclick="showoptimal()" id="optimizebutton">Find my optimal corpus</button>
+    <div class="output3" id="output3"> <span class="optimalheading">Optimal search string for your PMIDs:</span><br>
+      gout[mh]+OR+AND+english[la]+AND+humans[mh]+AND+jsubsetk[text]+OR+review[pt]+OR+guideline[pt]+OR+clinical+trial[pt]+OR+patient+education+handout[pt]+OR+jsubsetn[text]+OR+jsubsetaim[text]+OR+systematic[sb])+NOT+(letter[pt]+OR+editorial[pt])+AND+%22last+1+Year%22[edat] <a href="#">Copy</a><br>
+      <br>
+      <span class="optimalheading">Recall for your known PMIDs in this corpus:</span> 100.00%<br>
+      <br>
+      <span class="optimalheading">This search generates</span> 539 PMIDs <a href="#">Export list</a></div>
+  </div>
+  <br class="clear" />
+</div>
+</body>
+</html>
