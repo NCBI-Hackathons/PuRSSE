@@ -1,12 +1,12 @@
-# PuRSSE (Pubmed Research Search String Extraction)
+# PuRSSE (PubMed Research Search String Extraction)
 
-<img src="https://raw.githubusercontent.com/NCBI-Hackathons/SystematicReviews/master/PuRSSE.png" height=30 /> This project aims to create a pipeline for taking a set of known PMIDs and discovering the Shortest Precise Search Strategy (SPSS) for Pubmed that (a) retrieves all the original PMIDs, and (b) retrieves other articles related to the original topic(s) extracted from the known PMIDs. This process uses the article-level metadata provided by NLM (title and abstract plus MeSH terms and keywords). Topic modeling, specifically TF-IDF, word embedding and latent Dirichlet allocation (LDA), are used on the title and abstract. TF-IDF and word embedding are used on the MeSH terms. The topics generated will be used to create search strings constructed from the corresponding MeSH headings and keywords. 
+<img src="https://raw.githubusercontent.com/NCBI-Hackathons/SystematicReviews/master/PuRSSE.png" height=30 /> This project aims to create a pipeline for taking a set of known PMIDs and discovering the Shortest Precise Search Strategy (SPSS) for PubMed that (a) retrieves all the original PMIDs, and (b) retrieves other articles related to the original topic(s) extracted from the known PMIDs. This process uses the article-level metadata provided by NLM (title and abstract plus MeSH terms and keywords). Topic modeling, specifically TF-IDF, word embedding and latent Dirichlet allocation (LDA), are used on the title and abstract. TF-IDF and word embedding are used on the MeSH terms. The topics generated will be used to create search strings constructed from the corresponding MeSH headings and keywords. 
 
 # Team Members
 
 Melanie Huston, James Lavinder, Richard Lusk, Franklin Sayre
 
-A prototype of the projected process is at [location]:<br>
+A demo of the projected process <a href="http://htmlpreview.github.io/?https://github.com/NCBI-Hackathons/PuRSSE/blob/master/demo/PuRSSEDemo.html">can be viewed here</a>:<br>
 Known PMIDs (paste list or search into interface) --> retrieve articles' metadata --> topic modeling and clustering --> search string construction using MeSH --> New Search Strategy (cut & paste search into PubMed.gov)
 
 # Three Goals/Projects
@@ -31,7 +31,8 @@ This could be used to help with topic modeling PubMed literature by providing a 
 - see if EDirect gives compliant XML
 - determine optimum way(s) to model topics (metadata and methods)
 - create front end interface for end users
-- optimum method for stemming medical terms
+- find optimum method for stemming medical terms
+- gain expertise in MeSH hierarchy for search string creation
 
 # Process
 
